@@ -27,7 +27,7 @@ def get_template(request):
         file_loader = FileSystemLoader(r'UI')
         env = Environment(loader=file_loader)
         template = env.get_template('index.html')
-        countries = ['ok', 'ok']
+        
         output = template.render(countries=countries)
 
     except Exception as e:
