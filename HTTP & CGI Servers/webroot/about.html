@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel='stylesheet' type='text/css' href='main.css'>
+    <script src='script.js'></script>
+    <Style>
+        div:not(.area) {
+            z-index: 1;
+        }
+        .center {
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+            text-align: center;
+        }
+        .tab {
+            margin: auto;
+    width: 100%;
+    position: absolute;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+    </Style>
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+      </div>
+    
+    <div class="context">
+        <h1>Corona Statistics</h1>
+        <h1>
+            Total Active Patients: <h1 id="txtvalue">--CHOOSE A COUNTRY--</h1>
+        </h1>
+        <h1>
+            
+        </h1>
+        <h1>
+
+        </h1>
+        <div class="center">
+            <select id="countrySelect" onchange="countrySelect();">
+                <option>--CHOOSE A COUNTRY--</option>
+                <option>success</option>
+                {% for i in countries %}
+                    <option> {{i}} </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+    </div>
+    
+    <div style="z-index: -1" class="area" >
+        <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+        </ul>
+    </div>
+</body>
+</html>
