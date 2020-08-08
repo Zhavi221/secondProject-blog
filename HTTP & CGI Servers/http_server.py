@@ -8,13 +8,6 @@ from importlib import reload
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-IP = '0.0.0.0'
-PORT = 8080
-BUFFER_SIZE = 1024
-MAX_LISTEN = 10
-WEB_ROOT = 'webroot'
-DEFAULT_TIMEOUT = 60
-
 
 def get_parse_headers(headers):
     parse_headers = {}
@@ -42,8 +35,9 @@ def receive_client_request(client_socket):
     split_data = totaldata.split('\r\n')
     request = split_data[0]
     headers = split_data[1:len(split_data)-2]
+
     if 'POST' in request:
-        body = split_data[len(split_data)]
+        body = split_data[len(split_data)-1]
 
     headers = get_parse_headers(headers)
 
@@ -55,8 +49,8 @@ def check_client_request(request):
         print('Request is empty')
         return False, str(HTTPStatus.BAD_REQUEST)
 
-    allowed_paths = {'/', '/main.css', '/script.js',
-                     '/coronadata.json', '/favicon.ico', '/img_avatar2.png'}
+    allowed_paths = {'/', '/css/main.css', '/css/login.css', '/script.js',
+                     '/coronadata.json', '/favicon.ico', '/imgs/img_avatar_login.png', '/card'}
     allowed_methods = {'GET', 'POST'}
 
     request_type, path, protocol_ver = request.split(' ')  # GET URL HTTP/1.1
