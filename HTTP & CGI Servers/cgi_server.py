@@ -195,7 +195,7 @@ def handle_client_request(request, request_headers, request_body):
 
 
 def is_bad_ip(client_socket, addr):
-    if addr[0] == '192.168.14.1' or addr[0] == '127.0.0.1':
+    if addr[0] == '' or addr[0] == '':
         return False
 
     api_response=DbIpCity.get(addr[0], api_key='free')
